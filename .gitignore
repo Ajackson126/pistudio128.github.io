@@ -54,3 +54,11 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+.ipynb_checkpoints
+
+# VS Code Folder
+.vscode
+
+# sensitive information
+sensitive*.*
