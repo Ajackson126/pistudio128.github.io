@@ -1,5 +1,5 @@
 # pistudio128.github.io
-my personal webpage on github
+Web Design Challenge
 
 # creating a page generator
 1. break down index.html into parts
