@@ -1,0 +1,120 @@
+body{
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  
+  .info-content {
+      margin-top: 30px;
+      margin-bottom: 60px;
+      padding: 10px 30px 5px;
+      color: #000000;
+      background-color: white;
+  }
+
+  .visualization-content {
+      margin-top: 30px;
+      margin-bottom: 60px;
+      padding: 10px 30px 40px;
+      color: black;
+      background-color: white;
+  }
+  
+  .comparison-content {
+      margin-top: 30px;
+      margin-bottom: 60px;
+      margin-right: 40px;
+      margin-left: 40px;
+      padding: 10px 30px 40px;
+      color: black;
+      background-color: white;
+  }
+  .info-header {
+      padding-top: 15px; 
+      padding-left: 4px;
+      color: rgb(40, 180, 180);
+      font-size: 26px;
+      font-weight: bold;
+      font-family: Garamond, Times, "Times New Roman", serif;
+  }
+    
+  #landing-image {
+      float: left;
+      width: 50%;
+      height: 50%;
+    }
+  
+  #viz_image {
+      float: left;
+      width: 100%;
+      height: 100%;
+  }
+  
+  #comp_image {
+      float: left;
+      width: 90%;
+      height: 90%;
+  }
+
+  #main-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .table_data{
+      text-align: left;
+  }
+
+  .table_header {
+      word-wrap: normal;
+  }
+  
+  .table_content {
+      margin: 30px 10px 10px 10px;
+      border: 10px 10px 10px 10px;
+      padding: 10px 10px 10px 10px;
+      color: black;
+      background-color: white;
+  }
+  
+  tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    
+  .comp-title {
+      padding:  10px 0px 0px 0px;
+      text-align: center;
+      margin-bottom: 0px;
+      color: rgb(40, 164, 180);
+      font-size: 20px;
+      font-weight: bold;
+      font-family: Georgia, Times, "Times New Roman", serif;
+  }
+  
+  @media screen and (max-width: 600px) {
+      .topnav.responsive {position: relative;}
+      .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+
+* {box-sizing: border-box;}
+.img-zoom-container {
+ position: relative;
+}
+.img-zoom-lens {
+ position: absolute;
+ border: 1px solid #D4D4D4;
+  /*set the size of the lens:*/
+ width: 40px;
+ height: 40px;
+}
+.img-zoom-result {
+ border: 1px solid #D4D4D4;
+  /*set the size of the result div:*/
+ width: 300px;
+ height: 300px;
+}
