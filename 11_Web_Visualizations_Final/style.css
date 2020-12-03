@@ -30,28 +30,48 @@ body{
       color: black;
       background-color: white;
   }
+
   .info-header {
       padding-top: 15px; 
       padding-left: 4px;
       color: rgb(40, 180, 180);
       font-size: 26px;
       font-weight: bold;
-      font-family: Garamond, Times, "Times New Roman", serif;
+      font-family: Georgia, 'Times New Roman', Times, serif;
   }
-    
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(40, 180, 180);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+  }
+
+  .visualization-content {
+    margin-top: 30px;
+    margin-bottom: 60px;
+    padding: 10px 30px 40px;
+    color: black;
+    background-color: white;
+}
+      
   #landing-image {
       float: left;
       width: 50%;
       height: 50%;
     }
   
-  #viz_image {
+  #visualization_image {
       float: left;
       width: 100%;
       height: 100%;
   }
   
-  #comp_image {
+  #comparison_image {
       float: left;
       width: 90%;
       height: 90%;
@@ -68,25 +88,28 @@ body{
 
   .table_header {
       word-wrap: normal;
+      background-color: white;
   }
   
   .table_content {
       margin: 30px 10px 10px 10px;
       border: 10px 10px 10px 10px;
       padding: 10px 10px 10px 10px;
+      column-gap: 40px;
+      text-align: left;
       color: black;
       background-color: white;
   }
   
-  tr:nth-child(odd) {
-      background-color: #f2f2f2;
-    }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
     
   .comp-title {
       padding:  10px 0px 0px 0px;
       text-align: center;
       margin-bottom: 0px;
-      color: rgb(40, 164, 180);
+      color: rgb(40, 180, 180);
       font-size: 20px;
       font-weight: bold;
       font-family: Georgia, Times, "Times New Roman", serif;
