@@ -21,11 +21,16 @@
    <!-- Define the Navigation Bar --> 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand d-inline p-2 ml-5 bg-info text-white mb-0 pb-0" font-family=Georgia href="./index.html">Latitude</a>
-      
+      <div class="container-fluid navbar-custom">
+      <div class="navbar-header">
+        <div class="col-xs-9">
+
+          <a class="navbar-brand d-inline p-2 ml-5 bg-info text-white mb-0 pb-0" font-family=Georgia href="./index.html" id='logo'>Latitude</a>
+        </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      </div>
 
        
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -54,6 +59,7 @@
         </ul>
                     
       </div>
+    </div>
     </nav>
 
 <!--- Define container and visualizations --->
@@ -88,29 +94,24 @@
 
             <div class="row">
 
-              <div class="col-6">
                 <a href="./max_temp.html">
                 <img src="visualizations/temp.png"  alt="Latitude vs Temperature" id="visualization_image">
                 </a>
-              </div>
           
-              <div class="col-6">
                 <a href="./humidity.html">
                 <img src="visualizations/humidity.png" alt="Latitude vs Humidity" id="visualization_image">
                 </a>
-              </div>
+
           
-              <div class="col-6">
                 <a href="./cloudiness.html">
                 <img src="visualizations/cloudiness.png" alt="Latitude vs Cloudiness" id="visualization_image">
                 </a>
-              </div>
 
-              <div class="col-6">
+
                 <a href="./wind_speed.html">
                 <img src="visualizations/wind_speed.png" alt="Latitude vs Wind Speed" id="visualization_image">
                 </a>
-              </div>
+
             </div>  
           </div>
         </div>
