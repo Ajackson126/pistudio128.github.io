@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
 
 <head>
     <meta charset="utf-8" />
@@ -25,18 +16,19 @@
     <div class="container">
 
         <!-- Jumbotron -->
-        <div class="jumbotron text-center" style="background-image: url(file:///Users/aprildominguez/Desktop/Mars-Website-banner-1200x362.png); background-size: 100%; height: 100%;">
+        <div class="jumbotron text-center" style="background-image: url(https://tse1.mm.bing.net/th?id=OIP.WPUcmjjZl-LenSEDP-tk1wHaCP&pid=Api&P=0&w=559&h=169); background-size: 100%; height: 100%;">
             <h1 class="display-4">Mission to Mars</h1>
-            <a class="btn btn-lg text-white" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New
+            <a class="btn btn-lg text-white" style="background-color:#0f151b7e;" href="/scrape" role="button">Scrape New
                 Data</a>
         </div>
 
-        <!-- Define news section -->
+        <!-- Define container -->
         <div class="container">
             <h3>Latest Mars News</h3>
-            <h6 style="color: #c1440e">{{ mars_info.news_title }}</h6>
+            <h6 style="color: #bb5536">{{ mars_info.news_title }}</h6>
             <p>{{ mars_info.news_paragraph }}</p>
         </div>
+<!---->put in variable {{miami weather - most of the time passing dicitonary!}}
 
         <div class="container">
             <div class="row">
@@ -46,7 +38,7 @@
                     <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
                 </div>
 
-                <!-- Create weather Ccard -->
+                <!-- Create weather card -->
                 <div class="col-lg-4 col-md-4 col-sm-12">
 
                     <div class="card" style="width: 18rem;">
@@ -86,6 +78,15 @@
                 </div>
             </div>
         </div><!-- Close container -->
+
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 </body>
 

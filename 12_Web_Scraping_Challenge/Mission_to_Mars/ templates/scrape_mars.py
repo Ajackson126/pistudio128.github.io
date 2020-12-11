@@ -2,8 +2,26 @@
 from bs4 import BeautifulSoup
 from splinter import Browser
 import pandas as pd
-import requests
+import requests as r
 import time
+import scrape
+
+def get_population(url, parameter_list):
+    """"
+    gets dataframes from url passed
+    inputs: url
+    outputs: objects
+    """
+    result = r.get(url)
+
+    df_pop=pd.DataFrame()
+    
+    if result.status_code==200:
+        result=result.text
+        df_pop=pd.read_html(url)
+
+    pass
+
 
 # Initialize browser
 def init_browser():
