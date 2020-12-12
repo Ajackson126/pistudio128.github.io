@@ -8,13 +8,13 @@ import os
 app = Flask(__name__)
 
 #Use flask_pymongo to set up connection through mLab
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
+app.config["MONGO_URI"] = 'mongodb://localhost:27017/mars_app'
 mongo = PyMongo(app)
 
 # Create route that renders index.html template and finds documents from mongo
 @app.route("/")
 def index(): 
-    # Find data
+    # Find data - logic in background goes to mongodb
     mars_info = mongo.db.mars_info.find_one()
 
     # Return template and data
@@ -27,7 +27,7 @@ def scrape():
     # Run scraped functions
     mars_info = mongo.db.mars_info
     mars_data = scrape_mars.scrape()
-    mars_info.update({}, mars_data, upsert=False) 
+    mars_info.replace_one({}, mars_data, upsert=True) 
     return redirect("/", code=302)
 
 if __name__ == "__main__": 

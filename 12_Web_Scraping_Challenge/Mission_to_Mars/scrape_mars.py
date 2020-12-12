@@ -5,7 +5,6 @@ from splinter.exceptions import ElementDoesNotExist
 import pandas as pd
 import requests as r
 import time
-import scrape
 import os
 import sys
 os.path.dirname(sys.executable)
@@ -19,10 +18,10 @@ def scrape():
     browser.visit('http://www.google.com')
     
     # Scrape the [NASA Mars News Site](https://mars.nasa.gov/news/) 
-    news_title, news_p = mars_news(browser)
-    featured_image_url = image_url(browser)
-    mars_weather = weather(browser)
-    html_table1 = marsfacts()
+    news_title, news_p = scrape_mars_news(browser)
+    featured_image_url = scrape_mars_image(browser)
+    mars_weather ="" #weather(browser)
+    html_table1 = mars_facts(browser)
     marsdict = mars_hemispheres(browser)
     data = {
             "Title" : news_title,
@@ -32,42 +31,40 @@ def scrape():
             "Mars_Facts" : html_table1,
             "Mars_Hemispheres" : marsdict
             }
-    return mars_info = {}
+
     browser.quit()
+    return data
+    
 
     
 # NASA Mars News
 def scrape_mars_news(browser):
-        url = "https://mars.nasa.gov/news"
-        browser.visit(url)
-        
-        # Define html object
-        html = browser.html 
-        
-        # Launch Beautiful Soup to parse html
-        soup = BeautifulSoup(html, 'html.parser')
-   
-        # Retrieve the latest news title and assign to a variable
-        article = soup.select_one('ul.item_list  li.slide')
-        news_title = article.find('div', class_='content_title').text
-        
-        # Retrieve the latest news paragraph and assign to a variable
-        news_p = soup.find('div', class_='article_teaser_body').text
+    url1 = "https://mars.nasa.gov/news"
+    browser.visit(url1)
+    time.sleep(4)
+    # Define html object
+    html1 = browser.html 
+    
+    # Launch Beautiful Soup to parse html
+    soup = BeautifulSoup(html1, 'html.parser')
 
-        # Display scraped news title and paragraph
-        mars_info['news_title'] = news_title
-        mars_info['news_p'] = news_p
-        
-        return news_title, news_p
+    # Retrieve the latest news title and assign to a variable
+    article = soup.select_one('ul.item_list  li.slide')
+    news_title = article.find('div', class_='content_title').text
+    
+    # Retrieve the latest news paragraph and assign to a variable
+    news_p = soup.find('div', class_='article_teaser_body').text
 
-    browser.quit()
+    
+    return news_title, news_p
+
+    
 
 
 ### JPL Mars Space Images - Featured Image
 def scrape_mars_image(browser):
-        imageurldic = {}
-        image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
-        browser.visit(image_url)
+        image_url2 = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
+        browser.visit(image_url2)
 
         # Define html object
         html_img = browser.html
@@ -87,87 +84,81 @@ def scrape_mars_image(browser):
         # Display full link to featured image
         featured_image_url
 
-        # Dictionary entry from featured image
-        mars_info['featured_image_url'] = featured_image_url
 
-        return mars_info
-    finally:
+        return featured_image_url
+
 
         browser.quit()
 
 
 ### Mars Weather via Twitter
 def weather(browser):
-        url = 'https://twitter.com/marswxreport?lang=en'
-        browse.visit(url)
+        url3 = 'https://twitter.com/marswxreport?lang=en'
+        browser.visit(url3)
         time.sleep(5)      
 
         # Define html object
         html = browser.html
 
-        # Parse html with Beautiful Soup
+        # Tells browser to scroll down and execute in Javascript
+        browser.execute_script("window.scrollTo(300, document.body.scrollHeight);")
+
+        time.sleep(5)
         soup = BeautifulSoup(html, 'html.parser')
-
-        # Find all tweets with Mars Weather as the data name
-        #tweets = soup.find('o1', class_='stream-items')
-        #mars_weather = tweets.find('p', class_="tweet-text").text
-
-        #????????print(mars_weather)
-
-        #Save the tweet text for the weather report 
-        #as a variable called `mars_weather`.
-
-        #* **Note: Twitter frequently changes how information is presented on their website. If you are having difficulty getting the correct html tag data, consider researching Regular Expression Patterns and how they can be used in combination with the .find() method.**
-        #```python
-        # Example:
-        #mars_weather = 'Sol 1801 (Aug 30, 2017), Sunny, high -21C/-5F, low -80C/-112F, pressure at 8.82 hPa, daylight 06:09-17:55'
-
+        tweeterpage = soup.find_all('span', class_='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0')
+        mars_weather = []
+        for t in tweeterpage:
+            if t.text.startswith("InSight"):
+                mars_weather.append(t.text)
+        mars_weather[0].replace('\n', ' ')
+        
         browser.quit()
 
 ### Mars Facts
-def mars_facts(browse):
+def mars_facts(browser):
 
-    # Visit the Mars Facts webpage
-    facts_url = 'https://space-facts.com/mars/'
-    tables = pd.read_html(facts_url)
-    table1 = table[0]
-    html_table = table1.to_html(index=False)
-    return html_table1
+        # Visit the Mars Facts webpage
+        facts_url = 'https://space-facts.com/mars/'
+        table1 = pd.read_html(facts_url)
+        table1 = table1[0]
+        html_table1 = table1.to_html(index=False)
+        return html_table1
 
 ### Mars Hemispheres
 def mars_hemispheres(browser):
+    
     # # Visit the USGS Astrogeology site [here](https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars) 
-    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
-    browser.visit(url)
+    url4 = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url4)
     html = browser.html
-    soup = BeatifulSouth(html, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser')
     mars = soup.find_all('div', class_='item')
     main_url = 'https://astrogeology.usgs.gov'
     fullurl = ""
     mars_dict = []
-    for Mar in Mars:
+
+    for Mar in mars:
         # Error handling
         try:
             # Identify and return title of listing
             title = Mar.find('h3').text   
             link = Mar.a['href']
-            combinedurl = mainurl+link
+            combinedurl = main_url+link
             browser.visit(combinedurl)
             html = browser.html
             soup = BeautifulSoup(html, 'html.parser')
             Hemiurl = soup.find('img', class_='wide-image')['src']
-            fullurl = mainurl + Hemiurl
-            # Print results and append to dictionary only if title and link are available
-            #if (title and link and image):
+            fullurl = main_url + Hemiurl
+        # Print results and append to dictionary only if title and link are available
+        #if (title and link and image):
             if (title and fullurl):
                 #print('-------------')
                 #print(title)
                 print(fullurl)
-                marsdict.append({"Title" : title, "Image_URL" : fullurl}) 
+                mars_dict.append({"Title" : title, "Image_URL" : fullurl}) 
         except AttributeError as e:
-            print(e)
-    print("Dictionary: ",marsdict)      
-    return marsdict
+            print(e)  
+    return mars_dict
 
   
 #* Save both the image url string for the full resolution hemisphere image, a
