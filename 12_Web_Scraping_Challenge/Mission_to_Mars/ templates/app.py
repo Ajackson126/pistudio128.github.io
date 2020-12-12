@@ -1,48 +1,19 @@
-# Tutor ---> data = scrape_mars.init_browser()
-# Tutor ---> db.update({},data, upsert =True)
-
-
-# Import Dependencies 
 from flask import Flask, render_template, redirect 
 from flask_pymongo import PyMongo
-import scrape_mars.py   
+from pymongo import MongoClient
+import scrape_mars  
 import os
 
-
-# Hidden authetication file
-#import config 
-from flask import Flask, render_template, redirect
-from flask_pymongo
-
-# Create an instance of Flask app
+# Define Flask app
 app = Flask(__name__)
 
-# Functions run everytime
-@app.route("/")
-def index():
-    # resource requested, this python will run...whatever code is here.
-    weather_florida = {
-        'd' : 3,
-        'd' : 4
-    }
-    text = "Welcome to my site"
-    return render_template("index.html", gen_msg=text,
-    weather=weather_florida)
-
 #Use flask_pymongo to set up connection through mLab
-app.config["MONGO_URI"] = os.environ.get('authentication')
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
 mongo = PyMongo(app)
-
-
-
-# Use flask_pymongo to set up local mongo connection
-# app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
-# mongo = PyMongo(app)
 
 # Create route that renders index.html template and finds documents from mongo
 @app.route("/")
-def home(): 
-
+def index(): 
     # Find data
     mars_info = mongo.db.mars_info.find_one()
 
@@ -53,16 +24,15 @@ def home():
 @app.route("/scrape")
 def scrape(): 
 
-    # Run scrapped functions
+    # Run scraped functions
     mars_info = mongo.db.mars_info
-    mars_data = scrape_mars.scrape_mars_news()
-    mars_data = scrape_mars.scrape_mars_image()
-    mars_data = scrape_mars.scrape_mars_facts()
-    mars_data = scrape_mars.scrape_mars_weather()
-    mars_data = scrape_mars.scrape_mars_hemispheres()
-    mars_info.update({}, mars_data, upsert=True)
-
+    mars_data = scrape_mars.scrape()
+    mars_info.update({}, mars_data, upsert=False) 
     return redirect("/", code=302)
 
 if __name__ == "__main__": 
     app.run(debug= True)
+
+
+# Tutor ---> data = scrape_mars.init_browser()
+# Tutor ---> db.update({},data, upsert =True)
