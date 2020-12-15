@@ -35,7 +35,6 @@ def scrape():
     browser.quit()
     return data
     
-
     
 # NASA Mars News
 def scrape_mars_news(browser):

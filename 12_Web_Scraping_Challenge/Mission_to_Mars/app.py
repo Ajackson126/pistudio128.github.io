@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect 
+sofrom flask import Flask, render_template, redirect 
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import scrape_mars  
