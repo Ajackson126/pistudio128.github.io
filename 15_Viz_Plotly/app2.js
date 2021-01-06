@@ -25,14 +25,13 @@ function buildCharts(samplechoice) {
           }];
         
           // Define layout for bar chart
-          
           var layout2 = {
             title: 'Top 10 Bacteria per Sample'
         
             };
 
         Plotly.newPlot('bar', trace, layout2);
-        
+
 
         // Define bubble plot data
         var bubbleLayout = {
@@ -40,7 +39,10 @@ function buildCharts(samplechoice) {
           margin: { t: 0 },
           hovermode: "closest",
           xaxis: { title: "OTU ID" },
-          margin: { t: 30}
+          margin: { t: 30},
+          height: 600,
+          width: 1000
+
         };
 
         var otu_labels = sample[0].otu_labels;
@@ -63,22 +65,24 @@ function buildCharts(samplechoice) {
         Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
           // Define pie chart
-          var pie = [{
-            type: 'pie',
-            values: samplevalues,
-            labels: sampleotuids,
-            textinfo: otu_labels[0],
-            automargin: true
+          var pieData = [{
+              type: 'pie',
+              values: samplevalues.slice(0, 10).reverse(),
+              labels: sampleotuids,
+              textinfo: "labels+percent",
+              insidetextorientation: "horizontal"
           }];
 
-          var pie_layout = {
+          //var otu_labels = sample[0].otu_labels;
+
+          var pie_layout = [{
             height: 400,
             width: 400,
-            margin: {"t" : 0, "b" : 0, "l" : 0, "r" : 0},
-            showlegend: false
-          }
+            //margin: {"t" : 0, "b" : 0, "l" : 0, "r" : 0},
+            showlegend: true
+          }]
 
-        Plotly.newPlot('pie', pie, layout)
+        Plotly.newPlot('pie', pieData, pie_layout)
   
         //    Define gauge chart data - Bonus   
         
