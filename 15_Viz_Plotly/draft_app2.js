@@ -32,7 +32,6 @@ function buildCharts(samplechoice) {
             };
 
         Plotly.newPlot('bar', trace, layout2);
-        
 
         // Define bubble plot data
         var bubbleLayout = {
@@ -59,6 +58,38 @@ function buildCharts(samplechoice) {
           }
         ];
 
+      
+
+
+        // Define bubble plot data
+
+        // var trace1 = [{
+        //     x: sampleotuids/*array of OTU IDs for the sample chosen*/,
+        //     y: samplevalues/*array of sample values for the sample chosen*/,
+        //     //textinfo: (sampleotuids),
+        //     mode: 'markers',
+        //     marker: {
+        //       size: samplevalues,
+        //       color: sampleotuids,
+        //       colorscale: "Earth",
+        //       text: 'sampleotuids.otu_labels'
+  
+
+        //     },
+            
+        //   }];
+
+          
+          
+        //   // Define layout for bubble plot
+          
+        //   var layout = {
+        //     hovermode: 'closest',
+        //     showlegend: false,
+        //     height: 600,
+        //     width: 1000,
+        //     title: 'OTU ID'
+        //   };
           
         Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
