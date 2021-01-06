@@ -23,19 +23,28 @@ function buildCharts(samplechoice) {
             x: samplevalues.slice(0, 10).reverse(),
             orientation: 'h'
           }];
+        
+          // Define layout for bar chart
           
-        Plotly.newPlot('bar', trace);
+          var layout2 = {
+            title: 'Top 10 Bacteria per Sample'
+        
+            };
+
+        Plotly.newPlot('bar', trace, layout2);
 
 
         // Define bubble plot data
         var trace1 = [{
             x: sampleotuids/*array of OTU IDs for the sample chosen*/,
             y: samplevalues/*array of sample values for the sample chosen*/,
+            //textinfo: (sampleotuids),
             mode: 'markers',
             marker: {
               size: samplevalues,
               color: sampleotuids,
               colorscale: "Earth"
+  
 
             }
           }];
@@ -43,19 +52,38 @@ function buildCharts(samplechoice) {
           // Define layout for bubble plot
           
           var layout = {
-            title: 'OTU ID',
+            hovermode: 'closest',
             showlegend: false,
             height: 600,
-            width: 1000
+            width: 1000,
+            title: 'OTU ID'
           };
           
         Plotly.newPlot('bubble', trace1, layout);
 
-  //    Define gauge chart data - Bonus   
+          // Define pie chart
+          var pie = [{
+            type: 'pie',
+            values: samplevalues,
+            labels: sampleotuids,
+            textinfo: sampleotuids,
+            automargin: true
+          }];
+
+          var pie_layout = {
+            height: 400,
+            width: 400,
+            margin: {"t" : 0, "b" : 0, "l" : 0, "r" : 0},
+            showlegend: false
+          }
+
+        Plotly.newPlot('pie', pie, layout)
+  
+        //    Define gauge chart data - Bonus   
         
         var trace_g = [{
           domain: {x: [0,1], y: [0, 1]},
-          value: washFreq,
+          value: parseInt(washFreq),
           title: {text: "<b>Belly Button Washing Frequency </b><br> (Scrubs per Week)"},
           type: "indicator",
           mode: "gauge+number+delta",
