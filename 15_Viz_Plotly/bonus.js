@@ -1,4 +1,3 @@
-
 // Define data file
 const file = "Data/samples.json";
 
