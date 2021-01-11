@@ -12,24 +12,29 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3.select(".scatter")
+var svg = d3
+  .select(".scatter")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
 
   // Group charts
   var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   // Import Data
-d3.csv("assets/data/data.csv").then(function(censusData) {
+  d3.csv("assets/data/data.csv").then(function(censusData) {
     //did not create a time parser
     // d3.timeParser("%Y")
     // Step 1: Parse Data/Cast as numbers
     // ==============================
-    censusData.forEach(function(Cdata) {
-      Cdata.poverty = +Cdata.poverty;
-      Cdata.healthcare = +Cdata.healthcare;
+    censusData.forEach(function(data) {
+      data.poverty = +data.poverty;
+      data.healthcare = +data.healthcare;
+      data.age = +data.age;
+      data.smokes = +data.smokes;
+      data.obesity = +data.obesity;
+      data.income = +data.income;
     });
 
 
