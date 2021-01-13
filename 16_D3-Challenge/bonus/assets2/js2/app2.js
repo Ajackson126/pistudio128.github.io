@@ -46,7 +46,7 @@ var svg = d3
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([4, d3.max(censusData, d => d.healthcare)])
+      .domain([0, d3.max(censusData, d => d.healthcare)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -73,7 +73,7 @@ var svg = d3
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", "10")
-    .attr("fill", "green")
+    .attr("fill", "pink")
     .attr("opacity", ".5");
 
     // Step 6: Add State Abbreviation to Circles
