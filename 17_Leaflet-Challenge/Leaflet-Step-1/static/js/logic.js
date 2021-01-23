@@ -70,25 +70,26 @@ d3.json(baseURL, function (response) {
                 "fillColor": getColors(feature.geometry.coordinates[2]),
                 "radius": getRadius(feature.properties.mag)
             }
-        }
+        },
 
-        //create legennds and add to the map
-        var legend = L.control({ position: "bottomright" });
-        legend.onAdd = function () {
+        // // Create legend
+        // var: legend = L.control({ position: "bottomright" });
+        // legend.onAdd = function () {
+                    
+        //     // create div for the legend
+        //     var div = L.DomUtil.create('div', 'info legend'),
+        //         grades = [0, 1, 2, 3, 4, 5]
+        //         labels = [];
+        
+        //     // loop through our density intervals and generate a label with a colored square for each interval
+        //     for (var i = 0; i < grades.length; i++) {
+        //                             div.innerHTML +=
+        //                     '<i style="background:' + getColors(grades[i]) + '"></i> ' +
+        //                     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        //             }
+        //             return div;
+        //         };
 
-            // create div for the legend
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 1, 2, 3, 4, 5]
-            labels = [];
-
-            // loop through our density intervals and generate a label with a colored square for each interval
-            for (var i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + getColors(grades[i]) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-            }
-            return div;
-        };
 
     }).addTo(baseMap);
 
