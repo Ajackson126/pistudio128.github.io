@@ -1,4 +1,4 @@
-// Create the base map
+// Create the base map - updated version - missing code
 var baseMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 5
