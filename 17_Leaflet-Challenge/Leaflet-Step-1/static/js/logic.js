@@ -17,20 +17,15 @@ var baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_wee
 // var mag = "$where=created_date between'2018-01-01T00:00:00' and '2019-01-01T00:00:00'";
 // var depth = "&complaint_type=Rodent";
 // var loc = "&$limit=1000";
-
 // Assemble API query URL
 // var url = baseURL + mag + depth + loc;
-
-
-legend.addTo(map);
 // Grab data with d3
+
 d3.json(baseURL, function(response) {
     // Create a new marker cluster group
     console.log(response);
-    
-
-    // Loop through data
-    function getColors(d) {
+     // Loop through data
+     function getColors(d) {
         if (d < 1){
             return "#800026"
         }
@@ -50,7 +45,6 @@ d3.json(baseURL, function(response) {
             return "#FEB24C"
         }
     }
-
         // // Loop through data
         // function getRadius(e) {
         //     if (e < 1){
@@ -87,23 +81,20 @@ d3.json(baseURL, function(response) {
                 +"<br>"
                 + feature.geometry.coordinates[2]
             )
-        
         },
         style: function(feature){
             return{
-                "color":  "#white",
-                "weight" : 2,
-                "opacity":  0.65,
-                "dashArray": 0.7,
+                "color":  "white",
+                "weight" : 0.5,
+                "opacity":  1,
+                //"dashArray" : '3',
                 "fillColor" : getColors(feature.geometry.coordinates[2]),
                 //"radius": getRadius(feature.properties.mag[0])
         }
         }
-
     }).addTo(baseMap);
 
 })
-
 
     // L.geoJSON(response, {
     //     pointToLayer: function (feature, latlng) {
