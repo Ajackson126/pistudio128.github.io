@@ -22,9 +22,8 @@ function getRadius(mag) {
 }
 
 d3.json(baseURL, function (response) {
-    // Create a new marker cluster group
-    //console.log(response);
-    // Loop through data
+
+    // Loop through data and get colors
     function getColors(d) {
         if (d < 1) {
             return "#800026"
