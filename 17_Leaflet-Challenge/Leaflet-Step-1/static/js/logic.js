@@ -85,7 +85,7 @@ d3.json(baseURL, function(response) {
         style: function(feature){
             return{
                 "color":  "white",
-                "weight" : 0.5,
+                "weight" : .2,
                 "opacity":  1,
                 //"dashArray" : '3',
                 "fillColor" : getColors(feature.geometry.coordinates[2]),
