@@ -74,12 +74,14 @@ d3.json(baseURL, function (response) {
         },
 
     }).addTo(baseMap);
-// Create legend
+
+// Create legend - update this area
 var legend = L.control({position: "bottomright" });
 legend.onAdd = function(){
+
     // Create div for Legend
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 1, 2, 3, 4, 5]
+        grades = [-10, 10, 30, 50, 70, 90]
         labels = [];
   
     // Loop through density intervals and generate a label with a colored square for each interval
