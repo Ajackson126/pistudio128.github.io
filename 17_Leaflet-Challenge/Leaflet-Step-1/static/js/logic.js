@@ -82,11 +82,19 @@ legend.onAdd = function(){
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [-10, 10, 30, 50, 70, 90]
         labels = [];
+        var colors = [
+            "#800026",
+            "#BD0026",
+            "#E31A1C",
+            "#FC4E2A",
+            "#FD8D3C",
+            "#FEB24C"
+          ];
   
     // Loop through density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
           div.innerHTML +=
-              '<i style="background:' + getColors(grades[i]) + '"></i> ' +
+              '<i style="background:' + colors[i] + '"></i> ' +
               grades[i] + (grades[i +1 ] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
       }
       return div;
