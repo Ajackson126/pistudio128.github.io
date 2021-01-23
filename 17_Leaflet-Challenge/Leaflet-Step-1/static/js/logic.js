@@ -15,22 +15,6 @@ var lightmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/
 // Store API query variables
 var baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
-// Create legend
-var legend = L.control({position: "bottomright" });
-legend.onAdd = function(){
-    // Create div for Legend
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 1, 2, 3, 4, 5]
-        labels = [];
-  
-    // Loop through density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-          div.innerHTML +=
-              '<i style="background:' + getColors(grades[i]) + '"></i> ' +
-              grades[i] + (grades[i +1 ] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-      }
-      return div;
-    };
 
 // Create a function to adjust marker size depending on mag values
 function getRadius(mag) {
@@ -39,7 +23,7 @@ function getRadius(mag) {
 
 d3.json(baseURL, function (response) {
     // Create a new marker cluster group
-    console.log(response);
+    //console.log(response);
     // Loop through data
     function getColors(d) {
         if (d < 1) {
@@ -89,25 +73,22 @@ d3.json(baseURL, function (response) {
             }
         },
 
-        // // Create legend
-        // var: legend = L.control({ position: "bottomright" });
-        // legend.onAdd = function () {
-                    
-        //     // create div for the legend
-        //     var div = L.DomUtil.create('div', 'info legend'),
-        //         grades = [0, 1, 2, 3, 4, 5]
-        //         labels = [];
-        
-        //     // loop through our density intervals and generate a label with a colored square for each interval
-        //     for (var i = 0; i < grades.length; i++) {
-        //                             div.innerHTML +=
-        //                     '<i style="background:' + getColors(grades[i]) + '"></i> ' +
-        //                     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-        //             }
-        //             return div;
-        //         };
-
-
     }).addTo(baseMap);
-
+// Create legend
+var legend = L.control({position: "bottomright" });
+legend.onAdd = function(){
+    // Create div for Legend
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 1, 2, 3, 4, 5]
+        labels = [];
+  
+    // Loop through density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+          div.innerHTML +=
+              '<i style="background:' + getColors(grades[i]) + '"></i> ' +
+              grades[i] + (grades[i +1 ] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+      }
+      return div;
+    };
+    legend.addTo(baseMap)
 })
