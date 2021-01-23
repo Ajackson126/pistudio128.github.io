@@ -14,12 +14,7 @@ var lightmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/
 
 // Store API query variables
 var baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
-// var mag = "$where=created_date between'2018-01-01T00:00:00' and '2019-01-01T00:00:00'";
-// var depth = "&complaint_type=Rodent";
-// var loc = "&$limit=1000";
-// Assemble API query URL
-// var url = baseURL + mag + depth + loc;
-// Grab data with d3
+
 
 d3.json(baseURL, function(response) {
     // Create a new marker cluster group
@@ -45,27 +40,27 @@ d3.json(baseURL, function(response) {
             return "#FEB24C"
         }
     }
-        // // Loop through data
-        // function getRadius(e) {
-        //     if (e < 1){
-        //         return "#B7DF5F"
-        //     }
-        //     else if (e < 2) {
-        //         return "#DCED11"
-        //     }
-        //     else if (e < 3) {
-        //         return "#EDD911"
-        //     }
-        //     else if (e <4){
-        //         return "#EDB411"
-        //     }
-        //     else if (e<5){
-        //         return "ED7211"
-        //     }
-        //     else {
-        //         return "ED4311"
-        //     }
-        // }
+        // Loop through data
+        function getRadius(d) {
+             if (d < 1){
+                return "#B7DF5F"
+            }
+            else if (e < 2) {
+                return "#DCED11"
+            }
+            else if (e < 3) {
+                return "#EDD911"
+            }
+            else if (e <4){
+                return "#EDB411"
+            }
+            else if (e<5){
+                return "ED7211"
+            }
+            else {
+                return "ED4311"
+            }
+        }
 
     L.geoJSON(response, {
         pointToLayer: function (feature, latlng) {
@@ -89,7 +84,7 @@ d3.json(baseURL, function(response) {
                 "opacity":  1,
                 //"dashArray" : '3',
                 "fillColor" : getColors(feature.geometry.coordinates[2]),
-                //"radius": getRadius(feature.properties.mag[0])
+               // "radius": getRadius(feature.properties.mag[0])
         }
         }
     }).addTo(baseMap);
