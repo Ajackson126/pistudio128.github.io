@@ -15,7 +15,7 @@ var lightmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/
 // Store API query variables
 var baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
-// Create a function to adjust marker size depending on he mag values
+// Create a function to adjust marker size depending on mag values
 function getRadius(mag) {
     return mag * 5
 }
@@ -67,7 +67,6 @@ d3.json(baseURL, function (response) {
                 "color": "white",
                 "weight": .2,
                 "opacity": 1,
-                //"dashArray" : '3',
                 "fillColor": getColors(feature.geometry.coordinates[2]),
                 "radius": getRadius(feature.properties.mag)
             }
